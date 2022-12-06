@@ -13,6 +13,10 @@ def read_from_base64():
 
 def encrypt_secret(secret, pubkey):
     # PKCS#1 OAEP를 이용한 RSA 암호화 구현
+    cipher = PKCS1_OAEP.new(pubkey)
+    secret_encrypted = cipher.encrypt(secret)
+    # 암호화된 secret을 return
+    return secret_encrypted
 
 [secret, pubkey] = read_from_base64()
 cipher_str = encrypt_secret(secret, pubkey)
